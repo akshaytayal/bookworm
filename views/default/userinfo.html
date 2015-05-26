@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<style>
+.tdlabel
+    {
+        text-align: right;
+        width:50%;
+        height:30px;
+        font-size:16px;
+    }
+
+    table{
+        border-top:2px solid green;
+        border-left:2px solid green;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        width:100%
+    }
+    
+    .tdValue{
+        font-size:16px;
+    }
+    
+</style>
+<h4>User Information </h4><br>
+
+
+{{ for data in info:}}
+<table >
+    <tr><td class="tdlabel">&nbsp;</td><td></td></tr>
+    <tr><td class="tdlabel" >First Name :</td><td class="tdValue">{{=data.first_name}}</td></tr>
+    <tr><td class="tdlabel" >Last Name :</td><td class="tdValue">{{=data.last_name}}</td></tr>
+    <tr><td class="tdlabel" >Address :</td><td class="tdValue"> {{=data.address}}</td></tr>
+    <tr><td class="tdlabel" >Mail :</td><td class="tdValue">{{=data.email}}</td></tr>
+     <tr><td class="tdlabel" >Mobile :</td><td class="tdValue">{{=data.mobile_no}}</td></tr>
+    <tr><td>&nbsp;</td><td></td></tr>
+</table>
+  <br>
+{{pass}}

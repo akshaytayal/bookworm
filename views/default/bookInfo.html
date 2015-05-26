@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<style>
+.tdlabel
+    {
+        text-align: right;
+        width:50%;
+        height:30px;
+        font-size:16px;
+        
+    }
+    table{
+        border-top:2px solid green;
+        border-left:2px solid green;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        width:100%
+    }
+</style>
+<h4>Book Information </h4><br>
+{{ for book in bookInfo:}}
+<table >
+    <tr><td class="tdlabel">&nbsp;</td><td></td></tr>
+    <tr><td class="tdlabel" >Title :</td><td>{{=book.title}}</td></tr>
+    <tr><td class="tdlabel" >Author :</td><td>{{=book.author}}</td></tr>
+    <tr><td class="tdlabel" >ISBN :</td><td>{{=book.isbn}}</td></tr>
+    <tr><td class="tdlabel" >Owner of Book :</td><td> {{for data in db(book.user_id==db.user_info.id).select(db.user_info.id,db.user_info.first_name,db.user_info.last_name):}}
+    {{=A(T(data.first_name),_href=URL('userinfo',args=data.id))}}
+{{pass}}</td></tr>
+    <tr><td class="tdlabel" >Available from :</td><td>{{=book.available_from}}</td></tr>
+     <tr><td class="tdlabel" >Available upto :</td><td>{{=book.available_upto}}</td></tr>
+    <tr><td class="tdlabel" >Price per day :</td><td> INR {{=book.price_per_day}}</td></tr>
+    <tr><td>&nbsp;</td><td></td></tr>
+</table>
+  <br>
+{{pass}}
+{{if bf=='Y':}}
+Do you want to {{=A(T('Borrow'),_href=URL('book',args=book.id))}} this book ?
+{{pass}}

@@ -1,0 +1,66 @@
+{{extend 'layout.html'}}
+<style type="text/css">
+
+div.left{
+float:left;
+width:275px;
+height:260px;
+margin-left:15px;
+}
+.tdlabel
+    {
+        text-align: right;
+        width:17%;
+        height:30px;
+        font-size:16px;
+    }
+    
+</style>
+
+<font color=red>    {{=msg}}</font>
+<form>
+   <h4>
+       Filter books by </h4>
+   <table  width=100%>
+       
+    <tr>
+        <td class="tdlabel">Genre: </td>
+        <td><select name="genre" style="width:100px">
+            <option value="All"> All</option>
+            {{for genre in db().select(db.user_books.genre,distinct=True):}}
+            <option value="{{=genre.genre}}">{{=genre.genre}}</option>
+            {{pass}}
+            </select></td>
+        <td class="tdlabel">Author </td>
+        <td> <select name="author" style="width:150px">
+            <option value="All"> All</option>
+            {{for author in db().select(db.user_books.author,distinct=True):}}
+            <option value="{{=author.author}}">{{=author.author}}</option>
+            {{pass}} </select> </td>
+        <td>
+            <input type="checkbox" name="available" value="available">&nbsp; Only Available<br>
+           </td>
+        <td><input type="Submit" name="Submit" />
+        </td></tr></table>
+</form>
+
+{{for row in rows:}}
+<div class="left"> 
+    <br><br>
+    <img src="\BookWorms\static\images\{{=row.isbn}}.jpg" /><br>
+    {{=A(T(row.title),_href=URL('bookInfo',args=row.id))}}<br>
+    <b> Owner :</b>
+      {{for data in db(row.user_id==db.user_info.id).select(db.user_info.id,db.user_info.first_name,db.user_info.last_name):}}
+    {{=A(T(data.first_name),_href=URL('userinfo',args=data.id))}}
+    
+   <br>
+    {{if row.is_available=='Y':}}
+    <b> Available </b> 
+     {{=A(T('Borrow'),_href=URL('book',args=row.id))}} ?
+    {{else:}}
+    <b> Not Available</b>
+    {{pass}}
+     {{pass}}
+    <br><br><br>
+</div>
+{{pass}}

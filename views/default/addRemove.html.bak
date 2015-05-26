@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+<style>
+.tdlabel
+    {
+        text-align: right;
+        width:50%;
+        height:30px;
+        font-size:16px;
+    }
+    table{
+        border-top:2px solid green;
+        border-left:2px solid green;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        width:100%
+    }
+    
+    .tdValue{
+        font-size:16px;
+        text-align:left;
+    }
+    
+</style>
+ {{if len(br) > 0:}}
+<h4>   Following are the books with you.</h4>
+<table>    
+    <tr><th class="tdlabel">Title </th><th> Return by </th></tr>
+    {{for row in br:}}
+    <tr><td class="tdlabel">{{=A(T(row.title),_href=URL('bookInfo',args=row.id))}}</td><td class="tdValue">{{=row.available_upto}}</td></tr>
+    {{pass}}
+</table>
+{{pass}}
+
+<!-- ---------- ------------ -->
+<br>
+<span style="font-size:19px;font-weight:bold" >
+    {{if len(bnc) > 0:}}
+     Following are the books blocked by you but not collected as per our database.</span>  <br>
+    Please click collected if you have collected or click release to release the book.<br>
+<br>
+{{for row in bnc:}}
+<b>{{=row.title}} {{=A(T('Collected'),_href=URL('updateCollect',args=tran_id))}}</b> &nbsp;&nbsp;{{=A(T('Release'),_href=URL('updateRelease',args=tran_id))}} <br>
+{{pass}}
+{{pass}}
+<br>
+
+<!-- ---------- ------------ -->
+<h4>Following are books lent by you. To remove a book, click remove against it.</h4>
+<font color=red>{{=countErr}}</font>
+<table>    
+    <tr><th class="tdlabel">Title </th><th> Remove ? </th></tr>
+    {{for row in ub:}}
+    <tr><td class="tdlabel">{{=A(T(row.title),_href=URL('bookInfo',args=[row.id,'N']))}}</td><td class="tdValue">{{=A(T('Remove'),_href=URL('updateRemove',args=row.id))}}</td></tr>
+    {{pass}}
+</table>
+<br>
+
+<h4> Click {{=A(T('here'),_href=URL('addBooks'),)}} to add more books</h4>

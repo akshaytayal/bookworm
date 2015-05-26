@@ -1,0 +1,24 @@
+{{extend 'layout.html'}}
+
+<style>
+
+    table{
+        border-top:2px solid green;
+        border-left:2px solid green;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        width:100%
+    }
+</style>
+<h4>ISBN Information </h4><br>
+
+<table border=1 >
+    <tr><th>ISBN</th><th>Title</th><th>Author</th><th>Genre</th></tr>
+    {{ for row in db().select(db.isbn.ALL):}}
+
+    <tr><td>{{=row.isbn}}</td> 
+        <td>{{=row.title}}</td>
+        <td>{{=row.author}}</td>
+        <td>{{=row.genre}}</td></tr>   
+    {{pass}}
+</table>

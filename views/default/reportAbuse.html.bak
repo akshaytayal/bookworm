@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+
+<p>
+  Please report abuse for genuine cases only. If you report abuse for incorrect reasons , your account will be suspended.
+ </p>
+ <br>
+ Below are the case where you can report abuse on a user. Please select 1 or more reasons.
+ <br><br>
+<form >
+    
+{{for reason in reasons:}}
+<input type="checkbox" name="reasons" value={{=reason.id}}>
+{{=reason.reason}} <br>
+{{pass}}
+<br>
+Please enter the mailid of the user you want to report abuse :
+<input type="email" name="mail" />
+<input type="Submit" name="Submit" />
+    <br>
+    <font color=red>{{=actmsg}}</font>
+</form>

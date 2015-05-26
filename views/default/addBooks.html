@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+<form method="post">
+    
+<table border=0>
+	
+        <tr> <td><b>ISBN</b> {{=A(T('?'),_href=URL('isbnInfo'))}}  </td> 
+              <td> <input name="isbn" required style="width: 170px"/></td>  </tr>
+    
+        <tr> <td><b>Price per day </b></td> 
+			 <td> <input name="price" required style="width: 170px" type="number" min="0" value="0"/></td> 	</tr>
+			 
+        <tr> <td><b>Available From </b> </td> 
+			 <td> <input name="fromm" required style="width: 170px" type="date"/></td>	</tr>						
+			 
+        <tr> <td><b>Available Upto </b></td> 
+			 <td> <input name="to" required style="width: 170px" type="date"/></td>	</tr>
+			 	
+    </table>
+	
+				 <input type="Submit" name="Submit" />
+    </form>

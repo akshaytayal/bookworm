@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+<img src="\BookWorms\static\images\books.png" />
+  <br> <br><br>
+<p>
+            Welcome to the BookWorms portal !!! <br>
+    This portal is designed for lending and borrowing the books. Please read the following carefully before you register <br>
+    You should share a  minimum of 5 books to become a member. Once your account gets activated you can borrow a maximum of 5 available books.
+    The portal facilitates you to get the lender/borrower details. It's you responsibility to contact the lender to borrow a book.
+    You may report abuse on a user for particular reasons. The possible reasons are explained under 'report abuse' tab.
+    Share the books and share the joy of reading. Happy Reading !!!
+        </p>
+   <br>
+ 
+<font color=blue>{{ =msgs }} </font>
+{{ if session.login != 'Y': }}
+ <form method="post">
+     
+     Email &nbsp; &nbsp; &nbsp;&nbsp;:&nbsp; <input name="email" type="email" required style="width: 197px" /> <br>
+     Password :&nbsp; <input name="password" type="password" required style="width: 197px"/> <font color=red> {{=msg}} </font><br>
+     <input type="Submit" name="Submit" style="margin-left:6em"/>
+</form>
+
+<br>
+  New User ? <a href="register">{{=T('register')}}</a>
+
+  <br/>
+ <!-- <a href="{{=URL(args='request_reset_password')}}">{{=T('Lost Password')}}</a> -->
+  
+{{pass}}

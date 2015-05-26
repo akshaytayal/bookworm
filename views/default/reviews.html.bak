@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+
+<h4> Add Review </h4>
+Select a book to add review.
+<form method="post" >
+<select name="title">
+    {{for book in books: }}
+    <option>{{=book.title}}</option>
+    {{pass}}
+</select>
+<textarea name="review" ></textarea>
+    <font color=red>{{=errMsg}} </font>
+    <br>
+<input type="Submit" name="Submit" />
+  <br><br>
+<h4>
+    Find Reviews
+</h4>
+<select name="titleR">
+    {{for book in books: }}
+    <option>{{=book.title}}</option>
+    {{pass}}
+</select>
+<input type="Submit" name="SubmitR"  />
+      </form>
+<br>
+{{for review in reviews:}}
+{{for user_name in db(review.user_id==db.user_info.id).select(db.user_info.first_name,db.user_info.id):}}
+Review by   {{=A(T(user_name.first_name),_href=URL('userinfo',args=user_name.id))}} on <b>{{=review.title}}</b>
+<hr>
+{{pass}}<br>
+{{=review.review}}
+<br><br>
+{{pass}}

@@ -1,0 +1,101 @@
+{{extend 'layout.html'}}
+<style>
+div.main{
+background:white;
+margin-left:30px;
+margin-right:auto;
+width:1000px;
+border:1px solid black
+}
+.tdlabel
+    {
+        text-align: right;
+        width:25%
+    }
+        table{
+        border-top:2px solid green;
+        border-left:2px solid green;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        width:100%
+    }
+    th
+{
+height:50px;
+}
+</style>
+
+<h4>
+    Enter the following fields
+</h4>
+<br>
+<form method="post">
+    <font color=red>{{=errMsg }}</font>
+    <table  >
+        <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr> <td class="tdlabel" >First Name : </td>
+    <td width="25%"><input name="FirstName" required /></td>
+    <td class="tdlabel">Last Name : </td>
+    <td><input name="LastName" required /></td></tr>
+    
+    <tr> <td class="tdlabel" >Email : </td>
+    <td width="25%"><input type="email" name ="Email" required style="width: 197px"/></td>
+    <td> </td>
+    <td></td></tr>
+    
+    <tr> <td class="tdlabel" >Address : </td>
+    <td width="25%"><textarea width="10" name="address" required style="width: 197px"></textarea></td>
+    <td> </td>
+    <td></td></tr>
+    
+    <tr> <td class="tdlabel" >Mobile : </td>
+        <td width="25%"> <input name="mobile" pattern="[0-9]{10}"required/></td>
+    <td> </td>
+    <td></td></tr>
+        
+     <tr> <td class="tdlabel" >Enter Password : </td>
+         <td width="25%"> <input type="password" name="password1" pattern=".{6,}" style="width: 197px"/></td>
+    <td class="tdlabel"> Re enter Password :</td>
+    <td><input type="password"  name="password2" style="width: 197px" /></td></tr>
+    </table>
+    <br>
+	<table border=0>
+    
+        <tr> <th></th><th >Book1 Details </th><th> Book2 Details <th>Book3 Details </th><th> Book4 Details</th> <th> Book5 Details </th> </tr>
+	
+        <tr> <td><b>ISBN</b> {{=A(T('?'),_href=URL('isbnInfo')),_target='_blank'}}  </td> 
+                        <td> <input name="isbn1" required style="width: 130px"/></td>    
+						<td> <input name="isbn2" required style="width: 130px"/></td>
+						<td> <input name="isbn3" required style="width: 130px"/></td>
+						<td> <input name="isbn4" required style="width: 130px"/></td>
+						<td> <input name="isbn5" required style="width: 130px"/></td>
+						</tr>
+    
+        <tr> <td><b>Price per day </b></td> 
+						<td> <input name="price1" required style="width: 130px" type="number" min="0" value="0"/></td>    
+						<td> <input name="price2" required style="width: 130px" type="number" min="0" value="0"/></td>
+						<td> <input name="price3" required style="width: 130px" type="number" min="0" value="0"/></td>
+						<td> <input name="price4" required style="width: 130px" type="number" min="0" value="0"/></td>
+						<td> <input name="price5" required style="width: 130px" type="number" min="0" value="0"/></td>
+						</tr>
+						
+        <tr> <td><b>Available From </b> </td> 
+						<td> <input name="fromm1" required style="width: 130px" type="date"/></td>    
+						<td> <input name="fromm2" required style="width: 130px" type="date"/></td>
+						<td> <input name="fromm3" required style="width: 130px" type="date"/></td>
+						<td> <input name="fromm4" required style="width: 130px" type="date"/></td>
+						<td> <input name="fromm5" required style="width: 130px" type="date"/></td>
+						</tr>						<tr> 
+        <tr> <td><b>Available Upto </b></td> 
+						<td> <input name="to1" required style="width: 130px" type="date"/></td>    
+						<td> <input name="to2" required style="width: 130px" type="date"/></td>
+						<td> <input name="to3" required style="width: 130px" type="date"/></td>
+						<td> <input name="to4" required style="width: 130px" type="date"/></td>
+						<td> <input name="to5" required style="width: 130px" type="date"/></td>
+						</tr>
+	
+    </table>
+    <br>
+    <span style="margin-left:auto;margin-right:auto">      
+   <input type="Submit" name="Submit" />  </span> 
+    </form>
